@@ -19,7 +19,6 @@ while True:
     if el > 10:
         break
         
- 
        
 
 def my_genn():
@@ -27,11 +26,14 @@ def my_genn():
     a, b = 0, 1
     while True:
         n = yield
+        if n is None:
+            n = 5  # или другое значение по умолчанию
         fib_list = []
         for _ in range(n):
             fib_list.append(a)
             a, b = b, a + b
         yield fib_list
+
 
 def fib_coroutine(g):
     @functools.wraps(g)
@@ -76,5 +78,3 @@ lst = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
 fib_iter = FibonacchiLst(lst)
 for num in fib_iter:
     print(num)  
-    
-    
